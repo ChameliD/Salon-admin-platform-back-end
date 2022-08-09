@@ -1,14 +1,13 @@
-const client=require("../model/client")
+const user=require("../model/user")
 module.exports.create=async function(req,res){
             
-    const{firstName,phoneNumber,lastName,email}=req.body;
+    const{name,email,password}=req.body;
     try{
-        const resp=await client.create({
+        const resp=await user.create({
            
-            firstName:firstName,
-            lastName:lastName,
-            phoneNumber:phoneNumber,
+            name:name,
             email:email,
+            password:password,
            
     
         })
@@ -27,7 +26,7 @@ module.exports.get=async function(req,res){
     const{id}=req.params;
     try{
         console.log("variable__",id)
-        const resp=await client.findById(id);
+        const resp=await user.findById(id);
 
         res.send({
             success:true,

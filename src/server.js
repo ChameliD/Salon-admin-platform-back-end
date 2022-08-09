@@ -8,17 +8,17 @@ var cors = require('cors')
 
 const port= process.env.PORT || 3002;
 server.use(cors());
-//const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 server.use(bodyParser.json())
 server.use(bodyParser.urlencoded({extended:true}))
-/*server.use("/api",router,createProxyMiddleware({ 
+server.use("/api",router,createProxyMiddleware({ 
     target: 'http://localhost:3000', //original url
     changeOrigin: true, 
     //secure: false,
     onProxyRes: function (proxyRes, req, res) {
        proxyRes.headers['Access-Control-Allow-Origin'] = '*';
     }
-}));*/
+}));
 
 dbConnection();
 server.listen(port,function(){
