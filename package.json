@@ -4,11 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "start-dev": "nodemon src/server.js"
   },
-  "author": "",
+  "author": "Chamelis",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http-proxy": "^1.18.1",
+    "mongoose": "^6.5.0",
+    "stripe": "^10.0.0"
+  },
+  "devDependencies": {
+    "http-proxy-middleware": "^2.0.6",
     "nodemon": "^2.0.19"
   }
 }
