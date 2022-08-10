@@ -3,6 +3,7 @@ const express = require('express');
 const clientController=require('../controller/clientController')
 const userController=require('../controller/userController');
 const user = require('../model/user');
+const jwt=require('jsonwebtoken')
 
 const router=express.Router();
 const REG_ROUT=`/register`
@@ -24,10 +25,10 @@ router.post(`${REG_ROUT}`,async function(req,res){
             email:req.body.email,
             password:req.body.password,
         })
-        res.json({status:'ok'})
+        res.json({status:'sign in data has pass'})
     }catch(e){
         console.log(e)
-        res.json({status:'error',error:'Duplicate email'})
+        res.json({status:'error',error:'sign in error'})
     }
 })
 
@@ -40,15 +41,20 @@ router.post(`${LOG_ROUT}`,async function(req,res){
         })
         
         if(u){
-            return res.json({status:'ok'})
+                const token=jwt.sign({
+                    name:u.name,
+                    email:u.email,
+
+                },'secret123'
+            )
+            return res.json({status:'login data has pass',u:token})
         }
         else{
-            return res.json({status:'error',error:'Duplicate email'})
+            return res.json({status:'error',error:'login error',u:false})
         }
    
     }
 )
-
 
 
 
