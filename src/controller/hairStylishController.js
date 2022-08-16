@@ -20,8 +20,25 @@ module.exports.create=async function(req,res){
     }
    
 }
-
+//get all
 module.exports.get=async function(req,res){
+    const{id}=req.params;
+    try{
+        haireStylish.find({},(err,result)=>{
+            if(err){
+                res.json(err)
+            }else{
+                res.json(result)
+            }
+        })
+    }catch(e){
+        console.log("Error: ",e)
+    }
+    
+}
+
+//get byID
+module.exports.getById=async function(req,res){
     const{id}=req.params;
     try{
         console.log("variable__",id)
